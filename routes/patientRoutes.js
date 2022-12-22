@@ -1,5 +1,5 @@
 import express from "express";
-import { protect, admin } from "../middleware/authmiddleware.js";
+import { protect, checkRoleAsPatient } from "../middleware/authmiddleware.js";
 const router = express.Router();
 import {
   createPatient,
@@ -7,9 +7,9 @@ import {
   getPatients,
   getPatientById,
   deletePatient,
-} from "../controllers/patientController";
+} from "../controllers/patientController.js";
 
-router.route("/create").post(protect, createPatient);
+router.route("/create").post(protect, checkRoleAsPatient, createPatient);
 
 router
   .route("/:id")
