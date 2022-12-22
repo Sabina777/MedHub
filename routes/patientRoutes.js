@@ -1,5 +1,9 @@
 import express from "express";
-import { protect, checkRoleAsPatient } from "../middleware/authmiddleware.js";
+import {
+  protect,
+  checkRoleAsPatient,
+  admin,
+} from "../middleware/authmiddleware.js";
 const router = express.Router();
 import {
   createPatient,
@@ -13,7 +17,7 @@ router.route("/create").post(protect, checkRoleAsPatient, createPatient);
 
 router
   .route("/:id")
-  .delete(protect, deletePatient)
+  .delete(protect, admin, deletePatient)
   .get(protect, getPatientById)
-  .put(protect, updatePatient);
+  .put(protect, checkRoleAsPatient, updatePatient);
 export default router;
