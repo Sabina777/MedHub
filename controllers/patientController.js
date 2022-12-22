@@ -6,10 +6,9 @@ import Patient from "../models/patient.js";
 //@access -public
 const createPatient = asyncHandler(async (req, res) => {
   //get the Patient inputs from req body
-  const { user, first_name, last_name, contact, address, dob, gender } =
-    req.body;
+  const { first_name, last_name, contact, address, dob, gender } = req.body;
   //find Patient with the same email
-  const existPatient = await Patient.findOne({ user: user });
+  const existPatient = await Patient.findOne({ user: req.user._id });
 
   //if the Patient already exists , then throw the error
   if (existPatient) {
@@ -20,7 +19,7 @@ const createPatient = asyncHandler(async (req, res) => {
   //else create the new Patient
 
   const patient = await Patient.create({
-    user,
+    user: req.user._id,
     first_name,
     last_name,
     contact,
