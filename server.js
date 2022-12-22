@@ -9,7 +9,7 @@ import colors from "colors";
 
 import userRoutes from "./routes/userRoutes.js";
 import patientRoutes from "./routes/patientRoutes.js";
-
+import doctorRoutes from "./routes/doctorRoutes.js";
 // import { notfound, errorHandler } from "./middleware/errorMiddleware.js";
 dotenv.config();
 connectDB();
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRoutes);
 app.use("/patientProfile", patientRoutes);
-
+app.use("/doctorProfile", doctorRoutes);
 // const __dirname = path.resolve();
 // app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
