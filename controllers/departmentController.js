@@ -41,9 +41,7 @@ const createDepartment = asyncHandler(async (req, res) => {
 //@access -private
 
 const updateDepartment = asyncHandler(async (req, res) => {
-  const department = await Department.findById(req.params.id).select(
-    "-password"
-  );
+  const department = await Department.findById(req.params.id);
   if (department) {
     department.title = req.body.title || department.title;
     department.description = req.body.description || department.description;
@@ -73,9 +71,7 @@ const getDepartments = asyncHandler(async (req, res) => {
 //@route -GET /api/departments/:id
 //@access -private
 const getDepartmentById = asyncHandler(async (req, res) => {
-  const department = await Department.findById(req.params.id).select(
-    "-password"
-  );
+  const department = await Department.findById(req.params.id);
   if (department) {
     res.json(department);
   } else {
