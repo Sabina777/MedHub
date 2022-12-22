@@ -113,4 +113,65 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc- get all users
+//@route -GET /api/users/
+//@access -private
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+//@desc- get user by id and update
+//@route -GET /api/users/:id
+//@access -private
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error("User not found ");
+  }
+});
+
+//@desc- update the user profile
+//@route -PUT /api/users/profile
+//@access -private
+
+const updateUser = asyncHandler(async (req, res) => {
+  //find the user by the req.user.id from the protect middleware
+  const user = await User.findById(req.params.id);
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.role = req.body.role;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found ");
+  }
+});
+//@desc- delete the user
+//@route -DELETE /api/users/:id
+//@access -private
+const deleteUser = asyncHandler(async (req, res) => {
+  //find all the users
+  const user = await User.findById(req.params.id);
+  if (user) {
+    await user.remove();
+    res.json({ msg: "User removed" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 export { authUser, registerUser, getUsersProfile, updateUserProfile };
