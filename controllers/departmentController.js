@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Department from "../models/Department.js";
+import Department from "../models/department";
 
 //@desc- create  new Department
 //@route -POST /api/departments/create

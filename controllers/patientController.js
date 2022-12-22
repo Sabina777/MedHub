@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Patient from "../models/Patient.js";
+import Patient from "../models/patient.js";
 
 //@desc- create  new Patient
 //@route -POST /api/patients/create

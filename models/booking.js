@@ -25,7 +25,7 @@ const BookingSchema = mongoose.Schema(
       required: true,
     },
     time: {
-      type: Time,
+      type: String,
       required: true,
     },
     status: {
