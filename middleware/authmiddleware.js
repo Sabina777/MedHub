@@ -42,4 +42,24 @@ const admin = (req, res, next) => {
   }
 };
 
-export { protect, admin };
+const checkRoleAsPatient = (req, res, next) => {
+  if (req.user && req.user.role == "patient") {
+    // console.log(req.user);
+    next();
+  } else {
+    res.status(401);
+    throw new Error("Not authorized as patient");
+  }
+};
+
+const checkRoleAsDoctor = (req, res, next) => {
+  if (req.user && req.user.role == "doctor") {
+    // console.log(req.user);
+    next();
+  } else {
+    res.status(401);
+    throw new Error("Not authorized as doctor");
+  }
+};
+
+export { protect, admin, checkRoleAsDoctor, checkRoleAsPatient };
