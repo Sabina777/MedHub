@@ -7,7 +7,6 @@ import Doctor from "../models/doctor.js";
 const createDoctor = asyncHandler(async (req, res) => {
   //get the Doctor inputs from req body
   const {
-    user,
     first_name,
     last_name,
     contact,
@@ -16,7 +15,7 @@ const createDoctor = asyncHandler(async (req, res) => {
     department,
   } = req.body;
   //find Doctor with the same email
-  const existDoctor = await Doctor.findOne({ user: user });
+  const existDoctor = await Doctor.findOne({ user: req.user._id });
 
   //if the Doctor already exists , then throw the error
   if (existDoctor) {
@@ -27,7 +26,7 @@ const createDoctor = asyncHandler(async (req, res) => {
   //else create the new Doctor
 
   const doctor = await Doctor.create({
-    user,
+    user: req.user._id,
     first_name,
     last_name,
     contact,
