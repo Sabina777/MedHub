@@ -8,7 +8,7 @@ const createBooking = asyncHandler(async (req, res) => {
   //get the Booking inputs from req body
   const { user, department, doctor, description, date, time, status } =
     req.body;
-
+  ///pass user id, department id and doctor id
   const booking = await Booking.create({
     user,
     department,
