@@ -6,12 +6,10 @@ import Booking from "../models/Booking.js";
 //@access -public
 const createBooking = asyncHandler(async (req, res) => {
   //get the Booking inputs from req body
-  const { user, department, doctor, description, date, time, status } =
-    req.body;
+  const { user, doctor, description, date, time, status } = req.body;
   ///pass user id, department id and doctor id
   const booking = await Booking.create({
     user,
-    department,
     doctor,
     description,
     date,
@@ -24,7 +22,6 @@ const createBooking = asyncHandler(async (req, res) => {
     res.status(201).json({
       id: booking._id,
       user: booking.user,
-      department: booking.department,
       doctor: booking.doctor,
       description: booking.description,
       date: booking.date,
