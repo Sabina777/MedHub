@@ -7,10 +7,11 @@ import {
   getBookings,
   getBookingById,
   deleteBooking,
+  getBookingsByUser,
 } from "../controllers/bookingController.js";
 
 router.route("/create").post(protect, createBooking);
-
+router.route("/user").get(protect, getBookingsByUser);
 router
   .route("/:id")
   .delete(protect, admin, deleteBooking)

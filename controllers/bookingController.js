@@ -6,10 +6,10 @@ import Booking from "../models/Booking.js";
 //@access -public
 const createBooking = asyncHandler(async (req, res) => {
   //get the Booking inputs from req body
-  const { user, doctor, description, date, time, status } = req.body;
+  const { doctor, description, date, time, status } = req.body;
   ///pass user id, department id and doctor id
   const booking = await Booking.create({
-    user,
+    user: req.user._id,
     doctor,
     description,
     date,
@@ -73,6 +73,13 @@ const getBookings = asyncHandler(async (req, res) => {
   res.json(bookings);
 });
 
+//@desc- get all Bookingsof loggged in user
+//@route -GET /api/bookings/user
+//@access -private
+const getBookingsByUser = asyncHandler(async (req, res) => {
+  const bookings = await Booking.find({ user: req.user._id });
+  res.json(bookings);
+});
 //@desc- get Booking by id and update
 //@route -GET /api/bookings/:id
 //@access -private
@@ -107,4 +114,5 @@ export {
   getBookings,
   getBookingById,
   deleteBooking,
+  getBookingsByUser,
 };
