@@ -9,27 +9,22 @@ const DoctorSchema = mongoose.Schema(
     },
     first_name: {
       type: String,
-      required: true,
     },
     last_name: {
       type: String,
-      required: true,
     },
     contact: {
       type: Number,
-      required: true,
     },
     description: {
-      type: Text,
-      required: true,
+      type: String,
     },
     speciality: {
       type: String,
-      required: true,
     },
     department: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+
       ref: "Department",
     },
   },

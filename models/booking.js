@@ -17,7 +17,7 @@ const BookingSchema = mongoose.Schema(
       ref: "Doctor",
     },
     description: {
-      type: Text,
+      type: String,
       required: true,
     },
     date: {
