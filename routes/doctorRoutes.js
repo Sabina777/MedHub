@@ -15,10 +15,11 @@ import {
 } from "../controllers/doctorController.js";
 
 router.route("/create").post(protect, checkRoleAsDoctor, createDoctor);
-router.route("/department/:department_id").get(protect, getDoctorsByDepartment);
+router.route("/").get(getDoctors);
+router.route("/department/:department_id").get(getDoctorsByDepartment);
 router
   .route("/:id")
   .delete(protect, admin, deleteDoctor)
   .get(protect, getDoctorById)
-  .put(protect, checkRoleAsDoctor, updateDoctor);
+  .put(protect, updateDoctor);
 export default router;

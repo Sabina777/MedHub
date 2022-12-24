@@ -65,9 +65,9 @@ const updateDoctor = asyncHandler(async (req, res) => {
     doctor.contact = req.body.contact || doctor.contact;
     doctor.description = req.body.description || doctor.description;
     doctor.speciality = req.body.speciality || doctor.speciality;
-    doctor.department = req.body.department || doctor.department;
+    doctor.department_id = req.body.department_id || doctor.department_id;
 
-    const updatedDoctor = await Doctor.save();
+    const updatedDoctor = await doctor.save();
 
     res.json({
       _id: updatedDoctor._id,
@@ -76,7 +76,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
       contact: updatedDoctor.contact,
       description: updatedDoctor.description,
       speciality: updatedDoctor.speciality,
-      department: updatedDoctor.department,
+      department_id: updatedDoctor.department_id,
     });
   } else {
     res.status(404);
@@ -109,9 +109,10 @@ const getDoctorById = asyncHandler(async (req, res) => {
 //@route -GET /api/doctors/:department_id
 //@access -private
 const getDoctorsByDepartment = asyncHandler(async (req, res) => {
-  let doctos = [];
-  doctors = await Doctor.find({ department_id: req.params.department_id });
-  res.json(doctos);
+  const doctors = await Doctor.find({
+    department_id: req.params.department_id,
+  });
+  res.json(doctors);
 });
 
 //@desc- delete the Doctor

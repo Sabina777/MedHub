@@ -6,13 +6,16 @@ import {
   updateDepartment,
   getDepartmentById,
   deleteDepartment,
+  getDepartments,
 } from "../controllers/departmentController.js";
 
-router.route("/create").post(protect, createDepartment);
+router.route("/create").post(protect, admin, createDepartment);
+router.route("/").get(getDepartments);
 
 router
   .route("/:id")
   .delete(protect, admin, deleteDepartment)
+
   .get(protect, getDepartmentById)
   .put(protect, updateDepartment);
 export default router;

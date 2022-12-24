@@ -10,7 +10,7 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   //find user with the same email
   const user = await User.findOne({ email });
-
+  console.log("user", user);
   //if the user exists and password matches
   if (user && (await user.matchPassword(password))) {
     res.json({
