@@ -105,6 +105,15 @@ const getDoctorById = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc- list Doctor by department
+//@route -GET /api/doctors/:department_id
+//@access -private
+const getDoctorsByDepartment = asyncHandler(async (req, res) => {
+  let doctos = [];
+  doctors = await Doctor.find({ department_id: req.params.department_id });
+  res.json(doctos);
+});
+
 //@desc- delete the Doctor
 //@route -DELETE /api/Doctors/:id
 //@access -private
@@ -120,4 +129,11 @@ const deleteDoctor = asyncHandler(async (req, res) => {
   }
 });
 
-export { createDoctor, updateDoctor, getDoctors, getDoctorById, deleteDoctor };
+export {
+  createDoctor,
+  updateDoctor,
+  getDoctors,
+  getDoctorById,
+  deleteDoctor,
+  getDoctorsByDepartment,
+};

@@ -11,10 +11,11 @@ import {
   getDoctors,
   getDoctorById,
   deleteDoctor,
+  getDoctorsByDepartment,
 } from "../controllers/doctorController.js";
 
 router.route("/create").post(protect, checkRoleAsDoctor, createDoctor);
-
+router.route("/department/:department_id").get(protect, getDoctorsByDepartment);
 router
   .route("/:id")
   .delete(protect, admin, deleteDoctor)

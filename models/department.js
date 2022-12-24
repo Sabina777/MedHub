@@ -8,7 +8,7 @@ const DepartmentSchema = new Schema({
   },
 
   description: {
-    type: Text,
+    type: String,
     required: false,
   },
 });

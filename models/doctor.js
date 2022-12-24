@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
+
 const DoctorSchema = mongoose.Schema(
   {
     user: {
@@ -22,7 +22,7 @@ const DoctorSchema = mongoose.Schema(
     speciality: {
       type: String,
     },
-    department: {
+    department_id: {
       type: mongoose.Schema.Types.ObjectId,
 
       ref: "Department",

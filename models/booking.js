@@ -6,7 +6,7 @@ const BookingSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    doctor: {
+    doctor_id: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Doctor",
