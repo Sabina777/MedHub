@@ -77,10 +77,9 @@ const getBookings = asyncHandler(async (req, res) => {
 //@route -GET /api/bookings/user
 //@access -private
 const getBookingsByUser = asyncHandler(async (req, res) => {
-  const bookings = await Booking.find({ user: req.user._id }).populate(
-    "doctor_id",
-    "user first_name last_name contact speciality "
-  );
+  const bookings = await Booking.find({ user: req.user._id })
+    .populate("doctor_id", "user first_name last_name contact speciality ")
+    .populate("user", "name role");
   res.json(bookings);
 });
 //@desc- get Booking by id and update
