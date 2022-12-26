@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Booking from "../models/Booking.js";
+import Department from "../models/department.js";
 import Doctor from "../models/doctor.js";
 //@desc- create  new Booking
 //@route -POST /api/bookings/create
@@ -78,8 +79,15 @@ const getBookings = asyncHandler(async (req, res) => {
 //@access -private
 const getBookingsByUser = asyncHandler(async (req, res) => {
   const bookings = await Booking.find({ user: req.user._id })
-    .populate("doctor_id", "user first_name last_name contact speciality ")
+    .populate({
+      path: "doctor_id",
+      populate: {
+        path: "department_id",
+        model: "Department",
+      },
+    })
     .populate("user", "name role");
+
   res.json(bookings);
 });
 //@desc- get Booking by id and update
