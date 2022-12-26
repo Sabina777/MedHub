@@ -22,9 +22,11 @@ const DoctorSchema = mongoose.Schema(
     speciality: {
       type: String,
     },
+    image_url: {
+      type: String,
+    },
     department_id: {
       type: mongoose.Schema.Types.ObjectId,
-
       ref: "Department",
     },
   },
