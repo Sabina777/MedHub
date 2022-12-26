@@ -1,16 +1,16 @@
 import asyncHandler from "express-async-handler";
 import Booking from "../models/Booking.js";
-
+import Doctor from "../models/doctor.js";
 //@desc- create  new Booking
 //@route -POST /api/bookings/create
 //@access -public
 const createBooking = asyncHandler(async (req, res) => {
   //get the Booking inputs from req body
-  const { doctor, description, date, time, status } = req.body;
+  const { doctor_id, description, date, time, status } = req.body;
   ///pass user id, department id and doctor id
   const booking = await Booking.create({
     user: req.user._id,
-    doctor,
+    doctor_id,
     description,
     date,
     time,
@@ -22,7 +22,7 @@ const createBooking = asyncHandler(async (req, res) => {
     res.status(201).json({
       id: booking._id,
       user: booking.user,
-      doctor: booking.doctor,
+      doctor_id: booking.doctor_id,
       description: booking.description,
       date: booking.date,
       time: booking.time,
@@ -78,8 +78,8 @@ const getBookings = asyncHandler(async (req, res) => {
 //@access -private
 const getBookingsByUser = asyncHandler(async (req, res) => {
   const bookings = await Booking.find({ user: req.user._id }).populate(
-    "user",
-    "name"
+    "doctor_id",
+    "user first_name last_name contact speciality "
   );
   res.json(bookings);
 });
