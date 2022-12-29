@@ -12,7 +12,7 @@ const createDoctor = asyncHandler(async (req, res) => {
     contact,
     description,
     speciality,
-    department,
+    department_id,
   } = req.body;
   //find Doctor with the same email
   const existDoctor = await Doctor.findOne({ user: req.user._id });
@@ -32,7 +32,7 @@ const createDoctor = asyncHandler(async (req, res) => {
     contact,
     description,
     speciality,
-    department,
+    department_id,
   });
 
   //after the Doctor is created, return json data
@@ -45,7 +45,7 @@ const createDoctor = asyncHandler(async (req, res) => {
       contact: doctor.contact,
       description: doctor.description,
       speciality: doctor.speciality,
-      department: doctor.department,
+      department_id: doctor.department_id,
     });
   } else {
     res.status(404);
