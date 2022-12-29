@@ -13,6 +13,7 @@ const createDoctor = asyncHandler(async (req, res) => {
     description,
     speciality,
     department_id,
+    image_url,
   } = req.body;
   //find Doctor with the same email
   const existDoctor = await Doctor.findOne({ user: req.user._id });
@@ -33,6 +34,7 @@ const createDoctor = asyncHandler(async (req, res) => {
     description,
     speciality,
     department_id,
+    image_url,
   });
 
   //after the Doctor is created, return json data
@@ -46,6 +48,7 @@ const createDoctor = asyncHandler(async (req, res) => {
       description: doctor.description,
       speciality: doctor.speciality,
       department_id: doctor.department_id,
+      image_url: doctor.image_url,
     });
   } else {
     res.status(404);
@@ -66,6 +69,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
     doctor.description = req.body.description || doctor.description;
     doctor.speciality = req.body.speciality || doctor.speciality;
     doctor.department_id = req.body.department_id || doctor.department_id;
+    doctor.image_url = req.body.image_url || doctor.image_url;
 
     const updatedDoctor = await doctor.save();
 
@@ -77,6 +81,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
       description: updatedDoctor.description,
       speciality: updatedDoctor.speciality,
       department_id: updatedDoctor.department_id,
+      image_url: updatedDoctor.image_url,
     });
   } else {
     res.status(404);
