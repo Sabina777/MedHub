@@ -93,7 +93,9 @@ const updateDoctor = asyncHandler(async (req, res) => {
 //@route -GET /api/doctors/
 //@access -private
 const getDoctors = asyncHandler(async (req, res) => {
-  const doctors = await Doctor.find({});
+  const doctors = await Doctor.find({})
+    .populate("user", "name email role")
+    .populate("department_id", "title description");
   res.json(doctors);
 });
 
@@ -101,7 +103,9 @@ const getDoctors = asyncHandler(async (req, res) => {
 //@route -GET /api/Doctors/:id
 //@access -private
 const getDoctorById = asyncHandler(async (req, res) => {
-  const doctor = await Doctor.findById(req.params.id);
+  const doctor = await Doctor.findById(req.params.id)
+    .populate("user", "name email role")
+    .populate("department_id", "title description");
   if (doctor) {
     res.json(doctor);
   } else {
