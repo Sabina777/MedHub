@@ -1,6 +1,6 @@
 # MedHub
 
-MedHub is an online hospital appointment booking system that streamlines the process of scheduling medical appointments.
+MedHub is an online hospital appointment booking system built on the MERN (MongoDB, Express.js, React, Node.js) stack. It streamlines the process of scheduling medical appointments.
 
 ## Features
 
@@ -15,14 +15,18 @@ MedHub is an online hospital appointment booking system that streamlines the pro
 To get started with MedHub, follow these steps:
 
 1. Clone the repository: `git clone [repository_url]`
-2. Install dependencies: `npm install`
-3. Run the application: `npm start`
+2. Navigate to the project folder: `cd MedHub`
+3. Install dependencies: `npm install`
+4. Set up the backend: Navigate to the `backend` folder and run `npm install`
+5. Run the application: In the project root folder, run `npm run dev`
+
+Make sure to replace `[repository_url]` with the actual URL of your repository.
 
 ## Technologies Used
 
-- Frontend: [Tech Stack]
-- Backend: [Tech Stack]
-- Database: [Database Name]
+- **Frontend**: React
+- **Backend**: Node.js and Express.js
+- **Database**: MongoDB
 
 ## Contributing
 
@@ -30,7 +34,8 @@ We welcome contributions! If you'd like to contribute to MedHub, please follow o
 
 ## License
 
-This project is licensed under the MIT License
+This project is licensed under the MIT liscense.
 
+## Acknowledgments
 
-
+Feel free to reach out with any questions or concerns!
